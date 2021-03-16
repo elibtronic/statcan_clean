@@ -1,0 +1,22 @@
+#!/bin/bash
+echo Processing files..
+
+
+
+
+for df in *.csv; do
+
+	#Copy header from CSV file to cleaned version
+
+	read -r headers < $df
+	echo $headers > cleaned_"$df"
+
+	while read p; 
+	do
+		grep $p $df >> cleaned_"$df"
+
+	done < codes.txt
+
+done
+
+echo .. Done
